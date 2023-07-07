@@ -1,9 +1,10 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/Particulatematter">미세먼지</router-link> |
+    <router-link to="/Exchangerate">달러환율계산</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
