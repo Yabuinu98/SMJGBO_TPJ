@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div id="map" class="map-container"></div>
+    <div id="map" style="width: 500px; height: 400px"></div>
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    const gpsx = 129.0578
-    const gpsy = 35.1578
+    const gpsx = 129.059251862166
+    const gpsy = 35.155167003028
     const mapContainer = document.getElementById('map')
 
     const script = document.createElement('script')
@@ -28,7 +28,7 @@ export default {
             const lat = position.coords.latitude
             const lon = position.coords.longitude
             const locPosition = new window.kakao.maps.LatLng(lat, lon)
-            const message = '<div>여기가 현재위치</div>'
+            const message = '<div>여기가 정거장</div>'
             this.displayMarker(map, locPosition, message)
           })
         } else {
@@ -62,15 +62,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-div{
-  margin: 50px;
-}
-.map-container {
-  width: 700px;
-  height: 500px;
-  margin: 0 auto;
-  padding: 100px;
-}
-</style>
