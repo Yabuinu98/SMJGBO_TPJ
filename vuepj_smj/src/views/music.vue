@@ -13,31 +13,33 @@ export default {
 
     const script = document.createElement('script')
     script.src =
-      '//dapi.kakao.com/v2/maps/sdk.js?appkey=e139f221a53ae8e1de064297bd6fbdd1'
+      'https://dapi.kakao.com/v2/maps/sdk.js?appkey=e139f221a53ae8e1de064297bd6fbdd1&autoload=false'
     script.onload = () => {
-      const mapOptions = {
-        center: new window.kakao.maps.LatLng(gpsx, gpsy),
-        level: 4
-      }
+      window.kakao.maps.load(() => {
+        const mapOptions = {
+          center: new window.kakao.maps.LatLng(gpsx, gpsy),
+          level: 4
+        }
 
-      const map = new window.kakao.maps.Map(mapContainer, mapOptions)
+        const map = new window.kakao.maps.Map(mapContainer, mapOptions)
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude
-          const lon = position.coords.longitude
-          const locPosition = new window.kakao.maps.LatLng(lat, lon)
-          const message = '<div>여기가 정거장</div>'
-          this.displayMarker(map, locPosition, message)
-        })
-      } else {
-        alert(
-          '이 문장은 사용상의 웹 브라우저가 Geolocation API를 지원하지 않을 때 나타납니다.'
-        )
-      }
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude
+            const lon = position.coords.longitude
+            const locPosition = new window.kakao.maps.LatLng(lat, lon)
+            const message = '<div>여기가 정거장</div>'
+            this.displayMarker(map, locPosition, message)
+          })
+        } else {
+          alert(
+            '이 문장은 사용상의 웹 브라우저가 Geolocation API를 지원하지 않을 때 나타납니다.'
+          )
+        }
+      })
     }
 
-    document.head.appendChild(script)
+    document.body.appendChild(script)
   },
 
   methods: {

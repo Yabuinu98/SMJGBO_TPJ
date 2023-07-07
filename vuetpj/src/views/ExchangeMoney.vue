@@ -1,5 +1,6 @@
 <template>
   <div class="exchange-container">
+    <h1>달러를 원화로 환전하면?</h1>
     <form class="exchange-form" @submit.prevent>
       <input
         type="text"
@@ -7,7 +8,7 @@
         placeholder="금액을 입력하세요"
         @keyup.enter="calculateExchangeRate"
       />
-      <span class="currency">달러 </span>
+      <span class="currency">달러는 얼마일까? </span>
       <button type="button" @click="calculateExchangeRate">계산</button>
     </form>
     <h1 class="result">{{ result }}</h1>
@@ -62,6 +63,9 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  margin: 50px;
+}
 .exchange-container {
   display: flex;
   flex-direction: column;
