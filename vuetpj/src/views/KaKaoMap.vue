@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style scoped>
-div{
+div {
   margin: 50px;
 }
 .map-container {
