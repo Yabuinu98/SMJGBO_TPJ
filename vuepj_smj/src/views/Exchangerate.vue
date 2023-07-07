@@ -1,5 +1,6 @@
 <template>
   <div class="exchange-container">
+    <h1>달러를 원화로 환전하면?</h1>
     <form class="exchange-form" @submit.prevent>
       <input
         type="text"
@@ -36,7 +37,10 @@ export default {
         .then((data) => {
           const exchangeRate = data[0].basePrice
           const calculatedAmount = this.inputAmount * exchangeRate
-          this.result = `${this.inputAmount} 달러는 약 ${calculatedAmount.toLocaleString('ko-KR')} 원입니다.`
+          this.result = `${
+            this.inputAmount
+          } 달러는 약 ${calculatedAmount.toLocaleString('ko-KR')} 원입니다.`
+          this.inputAmount = '' // 입력값 초기화
         })
         .catch((error) => {
           console.error('환율 정보를 가져오는 중 오류가 발생했습니다:', error)
@@ -60,6 +64,9 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin: 50px;
+}
 .exchange-container {
   display: flex;
   flex-direction: column;

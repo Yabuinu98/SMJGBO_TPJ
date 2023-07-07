@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>병민이의 프로젝트</h1>
+  </div>
+  <div>
+    <img
+      src="https://post-phinf.pstatic.net/MjAxOTExMDhfOTgg/MDAxNTczMjAwMDkyNzIz.mMIFIyZ6uQ8JnquecBDjn40hC3ZxcP8LrQBaPrjHEaMg.NznpkpdZUViYMBB22Z38kakbtVb459kzVZcIySEiG4gg.GIF/IuwTcMm7SZ7BLkPibmyNLLy_mIuQ.jpg?type=w400"
+      alt=""
+    />
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+<script></script>
+<style scoped>
+img {
+  width: 500px;
+  height: 500px;
+  margin: 50px;
 }
-</script>
+</style>
