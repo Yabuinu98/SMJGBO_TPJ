@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>병민이의 프로젝트</h1>
+    <h1>병  민이 의 프로젝트</h1>
   </div>
   <div>
     <img

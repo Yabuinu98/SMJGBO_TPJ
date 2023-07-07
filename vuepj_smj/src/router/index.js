@@ -13,7 +13,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Particulatematter.vue')
+    component: () => import(/* webpackChunkName: "Particulatematter" */ '../views/Particulatematter.vue')
   },
   {
     path: '/Exchangerate',
@@ -21,7 +21,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "naver" */ '../views/Exchangerate.vue')
+    component: () => import(/* webpackChunkName: "Exchangerate" */ '../views/Exchangerate.vue')
+  },
+  {
+    path: '/music',
+    name: 'music',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "music" */ '../views/music.vue')
   }
 ]
 

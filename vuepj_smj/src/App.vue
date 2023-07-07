@@ -2,6 +2,7 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/Particulatematter">미세먼지</router-link> |
+    <router-link to="/music">뮤직인기순위</router-link> |
     <router-link to="/Exchangerate">달러환율계산</router-link>
   </nav>
   <router-view />
@@ -22,10 +23,10 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #000000;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #8b43ff;
 }
 </style>
