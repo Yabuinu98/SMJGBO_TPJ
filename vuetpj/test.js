@@ -82,6 +82,35 @@ app.get('/ppg/:ko', (req, res) => {
   })
 })
 
+// 6. 버스정류장
+/* 개인키 보안 구문 */
+const key = process.env.okey
+
+/* 버스 2(정거장) */
+let a, rst
+const { XMLParser } = require('fast-xml-parser')
+const parser = new XMLParser()
+const bss_url =
+  'http://apis.data.go.kr/6260000/BusanBIMS/bitArrByArsno?serviceKey='
+const bstop = '05712'
+const opt = '&arsno=' + bstop
+const totalURL = bss_url + key + opt
+
+request(totalURL, (e, res, body) => {
+  rst = parser.parse(body)
+  a = rst.response.body.items.item
+})
+
+app.get('/bss/', (req, res) => {
+  let list = ''
+  a.forEach((v, i) => {
+    list += `<p>버스번호: ${v.lineno}  |  남은시간: 바로-${
+      v.min1 ?? '예정이 없습니다'
+    }분후 그다음-${v.min2 ?? '예정이 없습니다'}분후<p>`
+  })
+  res.end(list)
+})
+
 app.listen(3000, () => {
   console.log('3000서버에서 서버 동작중')
 })
