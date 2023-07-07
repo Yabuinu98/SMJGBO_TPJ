@@ -20,31 +20,6 @@ app.use(logger('tiny'))
 /* mongoDB CRUD */
 // 민지 자리
 
-// 파파고 자리
-app.get('/ppg/:ko', (req, res) => {
-  const ko = req.params.ko
-  console.log(ko)
-  const api_url = 'https://openapi.naver.com/v1/papago/n2mt'
-  const options = {
-    url: api_url,
-    form: { source: 'ko', target: 'en', text: ko },
-    headers: {
-      'X-Naver-Client-Id': client_id,
-      'X-Naver-Client-Secret': client_secret
-    }
-  }
-  request.post(options, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      res.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' })
-      let result = JSON.parse(body)
-      let translatedText = result.message.result.translatedText
-      res.send(translatedText)
-    } else {
-      res.status(response.statusCode).end()
-      console.log('error = ' + response.statusCode)
-    }
-  })
-})
 app.listen(3000, () => {
   console.log('3000서버에서 서버 동작중')
 })

@@ -9,27 +9,32 @@
       placeholder="번역하실 문장을 입력해주세요."
     />
     <button @click="ppg">번역하기</button>
-    <h4>{{ en }}</h4>
+    <h4>{{ rst }}</h4>
   </div>
 </template>
+
 <script>
 import axios from 'axios'
+
 export default {
   name: 'home',
   data() {
     return {
-      en: '언어 번역을 합니다.',
+      rst: '언어 번역을 합니다.',
       ko: ''
     }
   },
   methods: {
-    ppg: function () {
-      this.en = '번역 하는중...'
-      axios.get('/ppg/:' + ko).then((res) => (this.en = res.data))
+    ppg() {
+      this.rst = '번역 중...'
+      axios.get(`/ppg/${encodeURIComponent(this.ko)}`).then((res) => {
+        this.rst = res.data
+      })
     }
   }
 }
 </script>
+
 <style scoped>
 input {
   display: inline-block;
