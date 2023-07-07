@@ -1,17 +1,31 @@
 <template>
-  <h1>프로젝트: Vuejs로 제작한 웹과 Nodejs 서버를 연동한 풀스택 구현</h1>
-  <div>
-    <!-- 조원 소개 -->
-    <h3>조원소개</h3>
+  <div class="container">
+    <h1>병 민이 의 프로젝트</h1>
+    <div class="image-container">
+      <img
+        src="https://post-phinf.pstatic.net/MjAxOTExMDhfOTgg/MDAxNTczMjAwMDkyNzIz.mMIFIyZ6uQ8JnquecBDjn40hC3ZxcP8LrQBaPrjHEaMg.NznpkpdZUViYMBB22Z38kakbtVb459kzVZcIySEiG4gg.GIF/IuwTcMm7SZ7BLkPibmyNLLy_mIuQ.jpg?type=w400"
+        alt=""
+      />
+    </div>
   </div>
 </template>
-<script>
-// import axios from 'axios'
-export default {
-  name: 'home',
-  data() {
-    return {}
-  }
+
+<script></script>
+
+<style scoped>
+.container {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-</script>
-<style scoped></style>
+
+.image-container {
+  margin-top: 50px;
+}
+
+img {
+  width: 500px;
+  height: 500px;
+}
+</style>
