@@ -1,6 +1,9 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
+    <router-link to="/weather">Weather</router-link> |
+    <router-link to="/exchangemoney">ExchangeMoney</router-link> |
+    <router-link to="/musiclist">MusicList</router-link> |
     <router-link to="/papago">PAPAGO</router-link> |
     <router-link to="/kakaomap">KaKaoMap</router-link> |
     <router-link to="/busstop">BUSSTOP</router-link> |

@@ -1,35 +1,37 @@
 <template>
-  <h1>여기는 버스</h1>
   <div>
-    <!-- 실시간 버스도착 정보 -->
-    <h3><mark>실시간</mark>버스 도착 정보</h3>
-    <button @click="dbu">1개 수정하기</button>
-    <h4>{{ bus }}</h4>
+    <p>{{ items }}</p>
   </div>
 </template>
+
 <script>
+import { XMLParser } from 'fast-xml-parser'
 import axios from 'axios'
+
 export default {
-  name: 'home',
   data() {
     return {
-      bus: '실시간 버스 정보를 받아옵니다.'
+      items: null
     }
   },
-  methods: {
-    ppg: function () {
-      this.en = 'DB데이터 로딩중...'
-      axios.get('/ppg/' + this.ko).then((res) => (this.en = res.data))
-    }
+  mounted() {
+    const url = 'http://apis.data.go.kr/6260000/BusanBIMS/bitArrByArsno'
+    const key = process.env.okey
+    const arsno = '05713'
+
+    const urlTotal = `${url}?arsno=${arsno}&serviceKey=${key}`
+
+    axios
+      .get(urlTotal)
+      .then((response) => {
+        const parser = new XMLParser()
+        const rst = parser.parse(response.data)
+        const items = rst.body.response.body.items
+        this.items = items
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 }
 </script>
-<style scoped>
-input {
-  display: inline-block;
-  text-align: left;
-  border-style: none;
-  border-bottom: 1px solid black;
-  margin: 5px;
-}
-</style>

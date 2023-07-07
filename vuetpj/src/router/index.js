@@ -8,6 +8,35 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/weather',
+    name: 'weather',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "weather" */ '../views/Weather.vue')
+  },
+  {
+    path: '/exchangemoney',
+    name: 'exchangemoney',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "exchangemoney" */ '../views/ExchangeMoney.vue'
+      )
+  },
+  {
+    path: '/musiclist',
+    name: 'musiclist',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "musiclist" */ '../views/MusicList.vue')
+  },
+  {
     path: '/papago',
     name: 'papago',
     // route level code-splitting
