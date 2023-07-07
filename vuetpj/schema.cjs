@@ -6,4 +6,4 @@ const VSchema = new Schema({
   content: String,
   date: Date
 })
-module.exports = mongoose.model('vpj', VSchema, 'vpj')
+module.exports = mongoose.model('vpj', VSchema, 'vpj') // vpj이름으로 collection 생성

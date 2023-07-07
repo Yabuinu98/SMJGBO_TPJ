@@ -24,10 +24,8 @@ export default {
   },
   methods: {
     ppg: function () {
-      this.en = 'DB데이터 로딩중...'
-      const encodedKo = encodeURIComponent(this.ko)
-      console.log(encodedKo)
-      axios.get('/ppg/' + encodedKo).then((res) => (this.en = res.data))
+      this.en = '번역 하는중...'
+      axios.get('/ppg/:' + ko).then((res) => (this.en = res.data))
     }
   }
 }

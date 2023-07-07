@@ -21,9 +21,9 @@ app.use(logger('tiny'))
 // 민지 자리
 
 // 파파고 자리
-app.get('/ppg/:encodedKo', (req, res) => {
-  const encodedKo = req.params.encodedKo
-  const ko = decodeURIComponent(encodedKo)
+app.get('/ppg/:ko', (req, res) => {
+  const ko = req.params.ko
+  console.log(ko)
   const api_url = 'https://openapi.naver.com/v1/papago/n2mt'
   const options = {
     url: api_url,
