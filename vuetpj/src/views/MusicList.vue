@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+h1{
+  font-family: 'Jua', sans-serif;
+}
 .container {
   max-width: 600px;
   margin: 0 auto;
@@ -62,7 +66,7 @@ export default {
 }
 
 .title {
-  font-size: 33px;
+  font-size: 40px;
   margin-bottom: 30px;
   padding: 30px;
 }
@@ -71,6 +75,7 @@ export default {
   padding: 10px;
   margin-right: 10px;
   font-size: 16px;
+  width: 100px;
 }
 
 .button {

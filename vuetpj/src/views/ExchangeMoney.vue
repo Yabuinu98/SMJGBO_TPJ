@@ -1,6 +1,6 @@
 <template>
   <div class="exchange-container">
-    <h1>달러를 원화로 환전하면?</h1>
+    <h1><mark>달러</mark>를 원화로 <mark>환전</mark>하면?</h1>
     <form class="exchange-form" @submit.prevent>
       <input
         type="text"
@@ -63,8 +63,11 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 h1{
   margin: 50px;
+  font-family: 'Jua', sans-serif;
+  font-size: 40px;
 }
 .exchange-container {
   display: flex;

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div id="map" class="map-container"></div>
+    <h1>지금 <mark>현재 위치</mark>는 어디일까?</h1>
+    <div id="map" class="map-container">
+    </div>
   </div>
 </template>
 
@@ -64,6 +66,13 @@ export default {
 </script>
 
 <style scoped>
+
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+h1{
+  font-family: 'Jua', sans-serif;
+  text-align: center;
+}
 div {
   margin: 50px;
 }

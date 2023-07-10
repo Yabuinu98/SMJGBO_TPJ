@@ -1,4 +1,5 @@
 <template>
+  <h1>실시간 <mark>미세먼지</mark> 확인</h1>
   <div class="weather-container">
     <div v-for="item in junpo" :key="item.stationName" class="weather-item">
       <h3>{{ item.stationName }}의 날씨</h3>
@@ -117,4 +118,9 @@ p {
 .weather-item:nth-child(2n) .value {
   color: #2196f3;
 }
+h1 {
+  font-family: 'Jua', sans-serif;
+  text-align: center;
+}
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 </style>

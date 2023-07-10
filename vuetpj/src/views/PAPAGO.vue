@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <!-- 파파고번역기 -->
-    <h1 class="title">파파고<mark>번역기</mark> 훔치기!!!</h1>
+    <h1 class="title">파파고 <mark>번역기</mark> 훔치기!!!</h1>
     <div class="input-container">
-      <select v-model="slt1">
+      <label class="label">입력 언어:</label>
+      <select v-model="slt1" class="select-box">
         <option value="ko">한국어</option>
         <option value="en">영어</option>
         <option value="zh-CN">중국어 간체</option>
@@ -18,7 +19,8 @@
       <button @click="ppg" class="button">번역하기</button>
     </div>
     <div class="output-container">
-      <select v-model="slt2">
+      <label class="label">출력 언어:</label>
+      <select v-model="slt2" class="select-box">
         <option value="ko">한국어</option>
         <option value="en">영어</option>
         <option value="zh-CN">중국어 간체</option>
@@ -45,7 +47,7 @@ export default {
     ppg() {
       this.rst = '번역 중...'
 
-      // 동일어를 선택한 경우에는 번역 요청을 보내지 않음
+      // 동일한 언어를 선택한 경우에는 번역 요청을 보내지 않음
       if (this.slt1 === this.slt2) {
         this.rst = this.txt
         return
@@ -79,7 +81,7 @@ export default {
 }
 
 .title {
-  font-size: 35px;
+  font-size: 40px;
   margin-bottom: 70px;
 }
 
@@ -95,9 +97,15 @@ export default {
   margin-right: 10px;
 }
 
+.select-box {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-right: 10px;
+}
+
 .input {
-  border-style: none;
-  border-bottom: 1px solid black;
+  border: 1px solid #ccc;
+  border-radius: 3px;
   padding: 10px;
   margin: 10px;
   font-size: 15px;
@@ -115,7 +123,14 @@ export default {
 }
 
 h4 {
-  font-size: 25px;
+  font-size: 30px;
   margin-top: 30px;
+  font-family: 'Jua', sans-serif;
 }
+
+h1 {
+  font-family: 'Jua', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 </style>
