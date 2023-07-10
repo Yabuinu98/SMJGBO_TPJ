@@ -48,10 +48,13 @@ axios.get(melon_url).then((res) => {
 app.get('/mml/:slt', (req, res) => {
   const slt = req.params.slt * 1
   let list = ``
-  list += `<table>`
   list += `<h3>기준: ${year} / ${hour}</h3>`
+  list += `<table class="music-list">`
+  list += `<tr><th>순위</th><th>제목</th><th>아티스트</th></tr>`
   songlist.slice(0, slt).forEach((song, index) => {
-    list += `<p>${index + 1}위: ${song.artist} - ${song.title}</p>`
+    list += `<tr><td>${index + 1}위</td><td>${song.title}</td><td>${
+      song.artist
+    }<td></tr>`
   })
   list += `</table>`
   res.end(list)

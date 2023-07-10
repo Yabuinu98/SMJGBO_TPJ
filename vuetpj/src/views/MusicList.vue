@@ -11,23 +11,7 @@
       </select>
       <button @click="getMusicList" class="button">보기</button>
     </div>
-    <table v-if="musicList.length" class="music-list">
-      <thead>
-        <tr>
-          <th>제목</th>
-          <th>아티스트</th>
-          <th>앨범</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="music in musicList" :key="music.id">
-          <td>{{ music.title }}</td>
-          <td>{{ music.artist }}</td>
-          <td>{{ music.album }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <p v-else class="no-results">뮤직 리스트가 없습니다.</p>
+    <div class="table" v-html="musicList"></div>
   </div>
 </template>
 
@@ -55,7 +39,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-h1{
+h1 {
   font-family: 'Jua', sans-serif;
 }
 .container {
@@ -100,12 +84,6 @@ h1{
 .music-list th,
 .music-list td {
   padding: 10px;
-  border: 1px solid #ccc;
-}
-
-.no-results {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #999;
+  border: 1px solid black;
 }
 </style>

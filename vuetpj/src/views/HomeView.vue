@@ -46,7 +46,7 @@ img {
 }
 
 h1 {
-  color:  rgb(194 215 255);
+  color: rgb(194 215 255);
   font-family: 'Jua', sans-serif;
   margin: 50px;
   text-shadow: 3px 6px 0px rgba(46, 69, 101, 5.5);
