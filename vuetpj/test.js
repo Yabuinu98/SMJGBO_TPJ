@@ -56,18 +56,21 @@ app.get('/mml/:slt', (req, res) => {
 })
 
 // 4. 파파고 번역기
-app.get('/ppg/:ko', (req, res) => {
-  const ko = decodeURIComponent(req.params.ko)
-  console.log(ko)
+app.get('/ppg/', (req, res) => {
+  const txt = req.query.input // 클라이언트에서 보낸 input 값 받기
+  const source = req.query.source // 클라이언트에서 보낸 source 값 받기
+  const target = req.query.target // 클라이언트에서 보낸 target 값 받기
+
   const api_url = 'https://openapi.naver.com/v1/papago/n2mt'
   const options = {
     url: api_url,
-    form: { source: 'ko', target: 'en', text: ko },
+    form: { source, target, text: txt },
     headers: {
       'X-Naver-Client-Id': client_id,
       'X-Naver-Client-Secret': client_secret
     }
   }
+
   request.post(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       const result = JSON.parse(body)
