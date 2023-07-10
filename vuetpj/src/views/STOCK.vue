@@ -7,6 +7,7 @@
     <canvas ref="myChart"></canvas>
   </div>
 </template>
+
 <script>
 import axios from 'axios'
 import Chart from 'chart.js'
@@ -14,44 +15,63 @@ import Chart from 'chart.js'
 export default {
   data() {
     return {
-      rst: '주식챠트 표시'
+      rst: []
     }
   },
   methods: {
-    stk() {
+    async stk() {
       this.rst = '변환중...'
-      axios.get('/stk').then((res) => {
+      try {
+        const res = await axios.get('/stk')
         this.rst = res.data
-      })
+      } catch (error) {
+        console.error(error)
+        this.rst = '주식 정보를 가져오는 데 실패했습니다.'
+      }
     },
-    chart() {
-      console.log(this.rst[0].itmsNm, this.rst[0].mkp)
+    async chart() {
       const ctx = this.$refs.myChart
-      const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: this.rst[0].itmsNm,
-          datasets: [
-            {
-              label: '# of Votes',
-              data: this.rst[0].mkp,
-              borderWidth: 1
-            }
-          ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+
+      try {
+        this.rst = [] // 데이터를 가져오기 전에 초기화
+
+        const res = await axios.get('/stk')
+        this.rst = res.data
+
+        const labels = this.rst.map((item) => item.label)
+        const data = this.rst.map((item) => item.value)
+
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: '주식 가격',
+                data: data,
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
-      })
-      this.$data.myChart = myChart
+        })
+
+        this.$data.myChart = myChart
+      } catch (error) {
+        console.error(error)
+        this.rst = '주식 정보를 가져오는 데 실패했습니다.'
+      }
     }
   }
 }
 </script>
+
 <style>
 canvas {
   width: 100%;
