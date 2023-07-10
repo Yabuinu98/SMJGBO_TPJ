@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 .container {
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
   text-align: center;
 }

@@ -1,7 +1,8 @@
 <template>
   <div class="container">
+
     <h1 class="title">
-      <mark>지금</mark> 가장 <mark>인기있는</mark> 뮤직 리스트 ♬
+      <mark>지금</mark> 가장 <mark>인기있는</mark> 뮤직 리스트
     </h1>
     <div class="controls">
       <select v-model="slt" class="select">
@@ -62,7 +63,7 @@ export default {
 }
 
 .title {
-  font-size: 33px;
+  font-size: 35px;
   margin-bottom: 30px;
   padding: 30px;
 }
