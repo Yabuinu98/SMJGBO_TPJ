@@ -3,17 +3,28 @@
     <!-- 파파고번역기 -->
     <h1 class="title">파파고<mark>번역기</mark> 훔치기!!!</h1>
     <div class="input-container">
-      <label for="input-text" class="label">원어:</label>
+      <select v-model="slt1">
+        <option value="ko">한국어</option>
+        <option value="en">영어</option>
+        <option value="zh-CN">중국어 간체</option>
+      </select>
       <input
         id="input-text"
         type="text"
-        v-model="ko"
+        v-model="txt"
         class="input"
         placeholder="번역하실 문장을 입력해주세요."
       />
       <button @click="ppg" class="button">번역하기</button>
     </div>
-    <h4>{{ rst }}</h4>
+    <div class="output-container">
+      <select v-model="slt2">
+        <option value="ko">한국어</option>
+        <option value="en">영어</option>
+        <option value="zh-CN">중국어 간체</option>
+      </select>
+      <h4>{{ rst }}</h4>
+    </div>
   </div>
 </template>
 
@@ -25,15 +36,36 @@ export default {
   data() {
     return {
       rst: '언어 번역을 합니다.',
-      ko: ''
+      txt: '',
+      slt1: '',
+      slt2: ''
     }
   },
   methods: {
     ppg() {
       this.rst = '번역 중...'
-      axios.get(`/ppg/${encodeURIComponent(this.ko)}`).then((res) => {
-        this.rst = res.data
-      })
+
+      // 동일어를 선택한 경우에는 번역 요청을 보내지 않음
+      if (this.slt1 === this.slt2) {
+        this.rst = this.txt
+        return
+      }
+
+      const params = {
+        input: this.txt,
+        source: this.slt1,
+        target: this.slt2
+      }
+
+      axios
+        .get('/ppg', { params })
+        .then((res) => {
+          this.rst = res.data
+        })
+        .catch((error) => {
+          console.error(error)
+          this.rst = '번역 에러 발생'
+        })
     }
   }
 }
