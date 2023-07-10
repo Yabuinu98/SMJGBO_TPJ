@@ -25,6 +25,7 @@ export default {
       })
     },
     chart() {
+      console.log(this.rst[0].itmsNm, this.rst[0].mkp)
       const ctx = this.$refs.myChart
       const myChart = new Chart(ctx, {
         type: 'bar',
