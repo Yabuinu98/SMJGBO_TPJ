@@ -48,10 +48,12 @@ axios.get(melon_url).then((res) => {
 app.get('/mml/:slt', (req, res) => {
   const slt = req.params.slt * 1
   let list = ``
+  list += `<table>`
   list += `<h3>기준: ${year} / ${hour}</h3>`
   songlist.slice(0, slt).forEach((song, index) => {
     list += `<p>${index + 1}위: ${song.artist} - ${song.title}</p>`
   })
+  list += `</table>`
   res.end(list)
 })
 
@@ -113,6 +115,42 @@ app.get('/bss/', (req, res) => {
   })
   res.end(list)
 })
+
+// 7. 주식챠트
+const stk_url =
+  'https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey='
+const stk_opt = '&numOfRows=1&pageNo=1&resultType=json'
+const stk_totalURL = stk_url + key + stk_opt
+let stock = null // 초기값을 null로 설정합니다.
+
+axios
+  .get(stk_totalURL)
+  .then((response) => {
+    const stk_rst = response.data
+    stock = stk_rst.response.body.items.item
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+
+app.get('/stk/', (req, res) => {
+  // stock 값이 null인 경우에는 요청이 아직 완료되지 않았으므로 클라이언트로 응답을 보내지 않습니다.
+  if (stock !== null) {
+    res.send(stock)
+  } else {
+    res.status(503).end() // 서비스를 사용할 수 없음을 나타내는 503 상태 코드를 응답합니다.
+  }
+})
+
+// let stock, stk_rst
+
+// request(stk_totalURL, (e, res, body) => {
+//   stk_rst = JSON.parse(body)
+//   stock = stk_rst.response.body.items.item
+// })
+// app.get('/stk/', (req, res) => {
+//   res.send(stock)
+// })
 
 app.listen(3000, () => {
   console.log('3000서버에서 서버 동작중')
