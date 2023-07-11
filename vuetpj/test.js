@@ -90,12 +90,11 @@ app.get('/ppg/', (req, res) => {
   })
 })
 
-// 6. 버스정류장
+// 버스정류장
 /* 개인키 보안 구문 */
 const key = process.env.okey
 
 /* 버스 2(정거장) */
-let a, rst
 const { XMLParser } = require('fast-xml-parser')
 const parser = new XMLParser()
 const bss_url =
@@ -104,20 +103,25 @@ const bstop = '05712'
 const opt = '&arsno=' + bstop
 const totalURL = bss_url + key + opt
 
-request(totalURL, (e, res, body) => {
-  rst = parser.parse(body)
-  a = rst.response.body.items.item
-})
+axios
+  .get(totalURL)
+  .then((response) => {
+    const rst = parser.parse(response.data)
+    const a = rst?.response?.body?.items?.item || []
 
-app.get('/bss/', (req, res) => {
-  let list = ''
-  a.forEach((v, i) => {
-    const min1Text = v.min1 ? `${v.min1}분후` : '예정이 없습니다'
-    const min2Text = v.min2 ? `${v.min2}분후` : '예정이 없습니다'
-    list += `<p>버스번호: ${v.lineno}  |  남은시간: 바로-${min1Text} 그다음-${min2Text}<p>`
+    app.get('/bss/', (req, res) => {
+      let list = ''
+      a.forEach((v, i) => {
+        const min1Text = v.min1 ? `${v.min1}분후` : '예정이 없습니다'
+        const min2Text = v.min2 ? `${v.min2}분후` : '예정이 없습니다'
+        list += `<p>버스번호: ${v.lineno}  |  남은시간: 바로-${min1Text} 그다음-${min2Text}<p>`
+      })
+      res.end(list)
+    })
   })
-  res.end(list)
-})
+  .catch((error) => {
+    console.error(error)
+  })
 
 // 7. 주식챠트
 const stk_url =
