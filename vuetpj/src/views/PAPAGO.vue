@@ -41,6 +41,8 @@ export default {
       txt: '',
       slt1: '',
       slt2: ''
+      // 뷰에서 .env쓰는법
+      // env1 = process.env.VUE_APP.nid
     }
   },
   methods: {
