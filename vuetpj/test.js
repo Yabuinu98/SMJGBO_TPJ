@@ -48,15 +48,15 @@ axios.get(melon_url).then((res) => {
 app.get('/mml/:slt', (req, res) => {
   const slt = req.params.slt * 1
   let list = ``
-  list += `<h3>기준: ${year} / ${hour}</h3>`
-  list += `<table class="music-list">`
-  list += `<tr><th>순위</th><th>제목</th><th>아티스트</th></tr>`
+  list += `<tr style="border: 1px solid black;"><th colspan="3" style="border: 1px solid black;">기준: ${year} / ${hour}</th></tr>`
+  list += `<tr style="border: 1px solid black;"><td style="border: 1px solid black;">순위</td><td style="border: 1px solid black;">제목</td><td style="border: 1px solid black;">아티스트</td></tr>`
   songlist.slice(0, slt).forEach((song, index) => {
-    list += `<tr><td>${index + 1}위</td><td>${song.title}</td><td>${
-      song.artist
-    }<td></tr>`
+    list += `<tr style="border: 1px solid black;"><td style="border: 1px solid black;">${
+      index + 1
+    }위</td><td style="border: 1px solid black;">${
+      song.title
+    }</td><td style="border: 1px solid black;">${song.artist}</td></tr>`
   })
-  list += `</table>`
   res.end(list)
 })
 
@@ -112,9 +112,9 @@ request(totalURL, (e, res, body) => {
 app.get('/bss/', (req, res) => {
   let list = ''
   a.forEach((v, i) => {
-    list += `<p>버스번호: ${v.lineno}  |  남은시간: 바로-${
-      v.min1 ?? '예정이 없습니다'
-    }분후 그다음-${v.min2 ?? '예정이 없습니다'}분후<p>`
+    const min1Text = v.min1 ? `${v.min1}분후` : '예정이 없습니다'
+    const min2Text = v.min2 ? `${v.min2}분후` : '예정이 없습니다'
+    list += `<p>버스번호: ${v.lineno}  |  남은시간: 바로-${min1Text} 그다음-${min2Text}<p>`
   })
   res.end(list)
 })
@@ -144,16 +144,6 @@ app.get('/stk/', (req, res) => {
     res.status(503).end() // 서비스를 사용할 수 없음을 나타내는 503 상태 코드를 응답합니다.
   }
 })
-
-// let stock, stk_rst
-
-// request(stk_totalURL, (e, res, body) => {
-//   stk_rst = JSON.parse(body)
-//   stock = stk_rst.response.body.items.item
-// })
-// app.get('/stk/', (req, res) => {
-//   res.send(stock)
-// })
 
 app.listen(3000, () => {
   console.log('3000서버에서 서버 동작중')

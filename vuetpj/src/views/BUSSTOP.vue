@@ -29,7 +29,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-h1{
+h1 {
   font-family: 'Jua', sans-serif;
   font-size: 40px;
 }
