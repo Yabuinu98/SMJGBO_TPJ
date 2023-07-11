@@ -1,5 +1,5 @@
 <template>
-  <h1>실시간 <mark>미세먼지</mark> 확인</h1>
+  <h1>실시간 <mark>대기오염(미세먼지)</mark> 정보</h1>
   <div class="weather-container">
     <div v-for="item in junpo" :key="item.stationName" class="weather-item">
       <h3>{{ item.stationName }}의 날씨</h3>

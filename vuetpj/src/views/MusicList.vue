@@ -11,7 +11,7 @@
       </select>
       <button @click="getMusicList" class="button">보기</button>
     </div>
-    <div class="table" v-html="musicList"></div>
+    <table v-html="musicList"></table>
   </div>
 </template>
 
@@ -72,7 +72,7 @@ h1 {
   cursor: pointer;
 }
 
-.music-list {
+table {
   margin-top: 20px;
   font-size: 16px;
   text-align: center;
@@ -80,10 +80,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
 }
-
-.music-list th,
-.music-list td {
+:is(tr, th, td) {
   padding: 10px;
-  border: 1px solid black;
 }
 </style>
